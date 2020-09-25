@@ -28,7 +28,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
-  google_fonts: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +66,15 @@ flutter:
         - asset: assets/fonts/verdana/verdana.ttf
         - asset: assets/fonts/verdana/Verdana Bold.ttf
           weight: 700
+    - family: flavors
+      fonts:
+        - asset: assets/fonts/Flavors/Flavors.ttf
+    - family: roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto.ttf
+    - family: openSans
+      fonts:
+        - asset: assets/fonts/Open_Sans/OpenSans.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
