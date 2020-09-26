@@ -273,10 +273,10 @@ class _BurgerUIState extends State<BurgerUI>
               ),
             ),
 //
-            //burger
+            //burger_all
             Positioned(
-              top: screenHeight * 0.075,
-              left: screenWidth * 0.075,
+              top: screenHeight * 0.47 - 250,
+              left: screenWidth * 0.5 - 135,
               child: GestureDetector(
                 onTap: () {
                   if (forward) {
@@ -318,6 +318,7 @@ class _BurgerUIState extends State<BurgerUI>
                       ),
                     ),
 //
+                    //burger
                     Container(
                       height: 500,
                       width: 270,
