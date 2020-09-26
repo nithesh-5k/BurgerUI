@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:burger_ui/Burger.dart';
 import 'package:burger_ui/CustomClipperOval.dart';
+import 'package:burger_ui/circular_text/circular_text.dart';
 import 'package:burger_ui/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -145,8 +146,8 @@ class _BurgerUIState extends State<BurgerUI>
 //
             //Bigger Better Burger
             Positioned(
-              right: 28,
-              top: 120,
+              right: screenWidth * 0.077,
+              top: screenHeight * 0.188,
               child: Container(
                 height: 45,
                 width: 130,
@@ -248,9 +249,7 @@ class _BurgerUIState extends State<BurgerUI>
             ),
 //
             //sm0kin' burger
-            Positioned(
-              child: Text(" "),
-            ),
+
 //
             //orange circle
             AnimatedPositioned(
@@ -260,9 +259,9 @@ class _BurgerUIState extends State<BurgerUI>
               left: -screenWidth * 0.6,
               child: ClipOvalShadow(
                 shadow: Shadow(
-                  color: Colors.black45,
+                  color: Colors.black45.withOpacity(0.3),
                   offset: Offset(20.0, 20.0),
-                  blurRadius: 49.0,
+                  blurRadius: 30.0,
                 ),
                 clipper: CustomClipperOval(),
                 child: ClipOval(
@@ -281,7 +280,7 @@ class _BurgerUIState extends State<BurgerUI>
             //burger
             Positioned(
               top: screenHeight * 0.075,
-              left: 27,
+              left: screenWidth * 0.075,
               child: GestureDetector(
                 onTap: () {
                   if (forward) {
@@ -298,10 +297,28 @@ class _BurgerUIState extends State<BurgerUI>
                       bottom: !burgerAnimate ? 118 : 0,
                       left: 22,
                       child: ClipOval(
-                        child: Container(
-                            height: 30,
-                            width: 190,
-                            color: Colors.black.withOpacity(0.75)),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            ClipOval(
+                              child: Container(
+                                height: 30,
+                                width: 190,
+                                color: Colors.black54.withOpacity(1),
+                              ),
+                            ),
+                            BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 17, sigmaY: 17),
+                              child: ClipOval(
+                                child: Container(
+                                  height: (30 * 2) / 3,
+                                  width: 190 / 2,
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 //
@@ -520,7 +537,33 @@ class _BurgerUIState extends State<BurgerUI>
                   ],
                 ),
               ),
-            )
+            ),
+            Positioned(
+              left: -screenWidth * .6,
+              top: screenHeight * 0.17,
+              child: CircularText(
+                children: [
+                  TextItem(
+                    text: Text(
+                      "sm0kin' Burger",
+                      style: TextStyle(
+                        fontFamily: "verdana",
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    space: 4,
+                    startAngle: -60,
+                    startAngleAlignment: StartAngleAlignment.center,
+                    direction: CircularTextDirection.clockwise,
+                  ),
+                ],
+                radius: screenWidth * 0.61,
+                position: CircularTextPosition.outside,
+//                backgroundPaint: Paint()..color = Colors.grey.shade200,
+              ),
+            ),
           ],
         ),
       ),
