@@ -32,7 +32,7 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom : 25,
+            bottom: !widget.animation ? _bottom : _bottom * 0.1666,
             child: BurgerPart(
               negate: true,
               animateFlag: widget.animation,
@@ -47,8 +47,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            left: 15,
-            bottom: !widget.animation ? _bottom + 20 : 70,
+            left: _burgerWidth * 0.0555555,
+            bottom: !widget.animation ? _bottom * 1.1333 : _bottom * 0.46666,
             child: BurgerPart(
               animateFlag: widget.animation,
               initialAngle: 0,
@@ -62,8 +62,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 23 : 140,
-            right: 40,
+            bottom: !widget.animation ? _bottom * 1.1533 : _bottom * 0.93333,
+            right: _burgerWidth * 0.148,
             child: Transform.rotate(
               angle: 345,
               child: BurgerPart(
@@ -76,8 +76,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 45 : 140,
-            left: 8,
+            bottom: !widget.animation ? _bottom * 1.3 : _bottom * 0.93333,
+            left: _burgerWidth * 0.0296,
             child: BurgerPart(
               image: "assets/mozzarella.png",
               height: _burgerHeight * 0.47, //132
@@ -87,8 +87,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            left: 30,
-            bottom: !widget.animation ? _bottom + 70 : 200,
+            left: _burgerWidth * 0.1111111,
+            bottom: !widget.animation ? _bottom * 1.46666 : _bottom * 1.3333333,
             child: BurgerPart(
               image: "assets/mozzarella 3.png",
               height: _burgerHeight * 0.465, //131
@@ -98,8 +98,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 40 : 155,
-            left: 50,
+            bottom: !widget.animation ? _bottom * 1.26666 : _bottom * 1.03333,
+            left: _burgerWidth * 0.185,
             child: BurgerPart(
               image: "assets/tomato1.png",
               height: _burgerHeight * 0.39, //110
@@ -109,8 +109,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 70 : 230,
-            left: 130,
+            bottom: !widget.animation ? _bottom * 1.46666 : _bottom * 1.533333,
+            left: _burgerWidth * 0.481,
             child: BurgerPart(
               image: "assets/onion2.png",
               height: _burgerHeight * 0.135, //39
@@ -121,7 +121,7 @@ class _BurgerState extends State<Burger> {
             duration: _duration,
             curve: _curve,
             left: 0,
-            bottom: _bottom + 60,
+            bottom: _bottom + _bottom * 0.4,
             child: BurgerPart(
               negate: true,
               animateFlag: widget.animation,
@@ -136,8 +136,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            left: 100,
-            bottom: !widget.animation ? _bottom + 80 : 250,
+            left: _burgerWidth * 0.37,
+            bottom: !widget.animation ? _bottom * 1.53333 : _bottom * 1.66666,
             child: BurgerPart(
               image: "assets/tomato3.png",
               height: _burgerHeight * 0.25, //71
@@ -147,8 +147,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 70 : 250,
-            left: 30,
+            bottom: !widget.animation ? _bottom * 1.46666 : _bottom * 1.666666,
+            left: _burgerWidth * 0.11111,
             child: BurgerPart(
               negate: true,
               animateFlag: widget.animation,
@@ -163,8 +163,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            bottom: !widget.animation ? _bottom + 75 : 270,
-            right: 15,
+            bottom: !widget.animation ? _bottom * 1.5 : _bottom * 1.8,
+            right: _burgerWidth * 0.05555,
             child: BurgerPart(
               image: "assets/onion.png",
               height: _burgerHeight * 0.295, //83
@@ -174,8 +174,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            left: -20,
-            bottom: !widget.animation ? _bottom + 50 : 270,
+            left: -(_burgerWidth * 0.074),
+            bottom: !widget.animation ? _bottom * 1.3333 : _bottom * 1.8,
             child: BurgerPart(
               image: "assets/salad.png",
               height: _burgerHeight * 0.385, //108
@@ -185,8 +185,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            right: 20,
-            bottom: !widget.animation ? _bottom + 50 : 300,
+            right: _burgerWidth * 0.074,
+            bottom: !widget.animation ? _bottom * 1.3333 : _bottom * 2,
             child: BurgerPart(
               image: "assets/salad2.png",
               height: _burgerHeight * 0.485, //136
@@ -196,8 +196,8 @@ class _BurgerState extends State<Burger> {
           AnimatedPositioned(
             duration: _duration,
             curve: _curve,
-            top: !widget.animation ? _top + 35 : 20,
-            left: -12,
+            top: !widget.animation ? _top * 1.233333 : _top * 0.13333,
+            left: -(_burgerWidth * 0.044),
             child: BurgerPart(
               negate: true,
               animateFlag: widget.animation,

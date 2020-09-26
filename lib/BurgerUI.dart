@@ -54,8 +54,8 @@ class _BurgerUIState extends State<BurgerUI>
         screenHeight = MediaQuery.of(context).size.height;
 
     double burgerHeight = screenHeight * 0.3125,
-        burgerWidth = screenWidth * 0.75,
-        burgerFrameHeight = screenHeight * 0.78;
+        burgerWidth = burgerHeight * 1.35,
+        burgerFrameHeight = screenHeight * 0.75;
 
     return Container(
       padding: EdgeInsets.only(top: statusBarHeight),
