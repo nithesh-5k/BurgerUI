@@ -54,11 +54,9 @@ class _BurgerUIState extends State<BurgerUI>
         screenWidth = MediaQuery.of(context).size.width,
         screenHeight = MediaQuery.of(context).size.height;
 
-    double burgerHeight = screenHeight * 0.3125,
-        burgerWidth = burgerHeight * 1.35,
-        burgerFrameHeight = screenHeight * 0.75;
-
-    print(screenHeight);
+    double burgerHeight = screenHeight * 0.3125, //200
+        burgerWidth = burgerHeight * 1.35, //270
+        burgerFrameHeight = screenHeight * 0.75; //500
 
     return Container(
       padding: EdgeInsets.only(top: statusBarHeight),
@@ -312,7 +310,6 @@ class _BurgerUIState extends State<BurgerUI>
                     ],
                     radius: screenWidth * 0.61,
                     position: CircularTextPosition.outside,
-//                backgroundPaint: Paint()..color = Colors.grey.shade200,
                   ),
                 ),
               ),
@@ -338,7 +335,7 @@ class _BurgerUIState extends State<BurgerUI>
                       bottom: !burgerAnimate
                           ? (burgerFrameHeight - burgerHeight) * 0.39
                           : 0,
-                      left: screenWidth * 0.061,
+                      left: burgerWidth * 0.0814,
                       child: ClipOval(
                         child: Stack(
                           alignment: Alignment.center,
