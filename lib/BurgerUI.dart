@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:burger_ui/Burger.dart';
 import 'package:burger_ui/CustomClipperOval.dart';
+import 'package:burger_ui/circular_text/circular_text.dart';
 import 'package:burger_ui/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -56,6 +57,8 @@ class _BurgerUIState extends State<BurgerUI>
     double burgerHeight = screenHeight * 0.3125,
         burgerWidth = burgerHeight * 1.35,
         burgerFrameHeight = screenHeight * 0.75;
+
+    print(screenHeight);
 
     return Container(
       padding: EdgeInsets.only(top: statusBarHeight),
@@ -272,6 +275,44 @@ class _BurgerUIState extends State<BurgerUI>
                         !orangeCircle ? screenHeight * 0.64 : screenHeight * 2,
                     width: !orangeCircle ? screenWidth * 1.2 : screenWidth * 3,
                     color: kOrange,
+                  ),
+                ),
+              ),
+            ),
+//
+            //sm0kin' burger
+            AnimatedPositioned(
+              duration: _duration,
+              curve: _curve,
+              left: !hideText ? -screenWidth * 0.6 : -screenWidth * 0.6 - 25,
+              top: !hideText ? screenHeight * 0.17 : screenHeight * 0.17 + 50,
+              child: AnimatedOpacity(
+                duration: _duration,
+                curve: _curve,
+                opacity: !hideText ? 1 : 0,
+                child: Visibility(
+                  visible: screenHeight > 700 ? true : false,
+                  child: CircularText(
+                    children: [
+                      TextItem(
+                        text: Text(
+                          "sm0kin' Burger",
+                          style: TextStyle(
+                            fontFamily: "verdana",
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        space: 4,
+                        startAngle: -60,
+                        startAngleAlignment: StartAngleAlignment.center,
+                        direction: CircularTextDirection.clockwise,
+                      ),
+                    ],
+                    radius: screenWidth * 0.61,
+                    position: CircularTextPosition.outside,
+//                backgroundPaint: Paint()..color = Colors.grey.shade200,
                   ),
                 ),
               ),
