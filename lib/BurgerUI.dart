@@ -4,7 +4,6 @@ import 'dart:ui';
 
 import 'package:burger_ui/Burger.dart';
 import 'package:burger_ui/CustomClipperOval.dart';
-import 'package:burger_ui/circular_text/circular_text.dart';
 import 'package:burger_ui/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -247,9 +246,6 @@ class _BurgerUIState extends State<BurgerUI>
                 ),
               ),
             ),
-//
-            //sm0kin' burger
-
 //
             //orange circle
             AnimatedPositioned(
@@ -536,32 +532,6 @@ class _BurgerUIState extends State<BurgerUI>
                     )
                   ],
                 ),
-              ),
-            ),
-            Positioned(
-              left: -screenWidth * .6,
-              top: screenHeight * 0.17,
-              child: CircularText(
-                children: [
-                  TextItem(
-                    text: Text(
-                      "sm0kin' Burger",
-                      style: TextStyle(
-                        fontFamily: "verdana",
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    space: 4,
-                    startAngle: -60,
-                    startAngleAlignment: StartAngleAlignment.center,
-                    direction: CircularTextDirection.clockwise,
-                  ),
-                ],
-                radius: screenWidth * 0.61,
-                position: CircularTextPosition.outside,
-//                backgroundPaint: Paint()..color = Colors.grey.shade200,
               ),
             ),
           ],
