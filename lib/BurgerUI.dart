@@ -53,6 +53,10 @@ class _BurgerUIState extends State<BurgerUI>
         screenWidth = MediaQuery.of(context).size.width,
         screenHeight = MediaQuery.of(context).size.height;
 
+    double burgerHeight = screenHeight * 0.3125,
+        burgerWidth = screenWidth * 0.75,
+        burgerFrameHeight = screenHeight * 0.78;
+
     return Container(
       padding: EdgeInsets.only(top: statusBarHeight),
       color: Colors.white,
@@ -275,8 +279,8 @@ class _BurgerUIState extends State<BurgerUI>
 //
             //burger_all
             Positioned(
-              top: screenHeight * 0.47 - 250,
-              left: screenWidth * 0.5 - 135,
+              top: screenHeight * 0.47 - (burgerFrameHeight / 2),
+              left: screenWidth * 0.5 - (burgerWidth / 2),
               child: GestureDetector(
                 onTap: () {
                   if (forward) {
@@ -290,8 +294,10 @@ class _BurgerUIState extends State<BurgerUI>
                     AnimatedPositioned(
                       duration: _duration,
                       curve: _curve,
-                      bottom: !burgerAnimate ? 118 : 0,
-                      left: 22,
+                      bottom: !burgerAnimate
+                          ? (burgerFrameHeight - burgerHeight) * 0.39
+                          : 0,
+                      left: screenWidth * 0.061,
                       child: ClipOval(
                         child: Stack(
                           alignment: Alignment.center,
@@ -299,7 +305,7 @@ class _BurgerUIState extends State<BurgerUI>
                             ClipOval(
                               child: Container(
                                 height: 30,
-                                width: 190,
+                                width: burgerWidth * 0.70,
                                 color: Colors.black54.withOpacity(1),
                               ),
                             ),
@@ -307,8 +313,8 @@ class _BurgerUIState extends State<BurgerUI>
                               filter: ImageFilter.blur(sigmaX: 17, sigmaY: 17),
                               child: ClipOval(
                                 child: Container(
-                                  height: (30 * 2) / 3,
-                                  width: 190 / 2,
+                                  height: 2,
+                                  width: burgerWidth * 0.35,
                                   color: Colors.transparent,
                                 ),
                               ),
@@ -320,9 +326,14 @@ class _BurgerUIState extends State<BurgerUI>
 //
                     //burger
                     Container(
-                      height: 500,
-                      width: 270,
-                      child: Burger(burgerAnimate),
+                      height: burgerFrameHeight,
+                      width: burgerWidth,
+                      child: Burger(
+                        animation: burgerAnimate,
+                        burgerHeight: burgerHeight,
+                        burgerWidth: burgerWidth,
+                        topBottom: (burgerFrameHeight - burgerHeight) / 2,
+                      ),
                     ),
                   ],
                 ),
