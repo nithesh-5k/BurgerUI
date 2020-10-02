@@ -3,11 +3,12 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:burger_ui/Burger.dart';
-import 'package:burger_ui/CustomClipperOval.dart';
 import 'package:burger_ui/circular_text/circular_text.dart';
 import 'package:burger_ui/const.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 
 class BurgerUI extends StatefulWidget {
   @override
@@ -55,7 +56,9 @@ class _BurgerUIState extends State<BurgerUI>
         screenHeight = MediaQuery.of(context).size.height;
 
     double burgerHeight = screenHeight * 0.3125, //200
-        burgerWidth = burgerHeight * 1.35, //270
+        burgerWidth = burgerHeight * 1.35 > screenWidth * 0.75
+            ? screenWidth * 0.75
+            : burgerHeight * 1.35, //270  //burgerWidth = screenWidth * 0.75,
         burgerFrameHeight = screenHeight * 0.75; //500
 
     return Container(
@@ -92,10 +95,38 @@ class _BurgerUIState extends State<BurgerUI>
             Positioned(
               right: screenWidth * 0.04,
               top: screenHeight * 0.017,
-              child: Icon(
-                Icons.menu,
-                color: Colors.black,
-                size: 40,
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                    padding: EdgeInsets.all(5),
+                    height: 40,
+                    width: 40,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 4,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(2))),
+                        ),
+                        Container(
+                          height: 4,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(2))),
+                        ),
+                        Container(
+                          height: 4,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(2))),
+                        )
+                      ],
+                    )),
               ),
             ),
 //
@@ -205,7 +236,7 @@ class _BurgerUIState extends State<BurgerUI>
             //green circle
             AnimatedPositioned(
               right: -screenWidth * 0.475,
-              top: !greenCircle ? screenHeight * 0.31 : -screenHeight * 0.31,
+              top: !greenCircle ? screenHeight * 0.315 : -screenHeight * 0.31,
               duration: _duration,
               curve: _curve,
               child: ClipOval(
@@ -258,23 +289,22 @@ class _BurgerUIState extends State<BurgerUI>
               curve: _curve,
               top: !orangeCircle ? screenHeight * 0.18 : -screenHeight * 0.5,
               left: -screenWidth * 0.6,
-              child: ClipOvalShadow(
-                shadow: Shadow(
-                  color: Colors.black45.withOpacity(0.3),
-                  offset: Offset(20.0, 20.0),
-                  blurRadius: 30.0,
-                ),
-                clipper: CustomClipperOval(),
-                child: ClipOval(
-                  child: AnimatedContainer(
-                    duration: Duration(seconds: 1),
-                    curve: _curve,
-                    height:
-                        !orangeCircle ? screenHeight * 0.64 : screenHeight * 2,
-                    width: !orangeCircle ? screenWidth * 1.2 : screenWidth * 3,
+              child: AnimatedContainer(
+                duration: Duration(seconds: 1),
+                curve: _curve,
+                height: !orangeCircle ? screenHeight * 0.64 : screenHeight * 2,
+                width: !orangeCircle ? screenWidth * 1.2 : screenWidth * 3,
+                decoration: BoxDecoration(
                     color: kOrange,
-                  ),
-                ),
+                    borderRadius: BorderRadius.all(Radius.elliptical(
+                        screenWidth * 1.2, screenHeight * 0.64)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45.withOpacity(0.4),
+                        offset: Offset(6.0, 6.0),
+                        blurRadius: 49.0,
+                      ),
+                    ]),
               ),
             ),
 //
@@ -308,7 +338,7 @@ class _BurgerUIState extends State<BurgerUI>
                         direction: CircularTextDirection.clockwise,
                       ),
                     ],
-                    radius: screenWidth * 0.61,
+                    radius: screenWidth * 0.6,
                     position: CircularTextPosition.outside,
                   ),
                 ),
@@ -410,8 +440,8 @@ class _BurgerUIState extends State<BurgerUI>
 //
             //count
             Positioned(
-              bottom: 30,
-              left: 20,
+              bottom: screenHeight * 0.0468,
+              left: screenWidth * 0.0555,
               child: AnimatedOpacity(
                 duration: _duration,
                 curve: _curve,
@@ -429,7 +459,7 @@ class _BurgerUIState extends State<BurgerUI>
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: screenWidth * 0.02777,
                     ),
                     customContainer(Text(
                       count.toString(),
@@ -440,7 +470,7 @@ class _BurgerUIState extends State<BurgerUI>
                           fontWeight: FontWeight.bold),
                     )),
                     SizedBox(
-                      width: 10,
+                      width: screenWidth * 0.02777,
                     ),
                     GestureDetector(
                         onTap: () {
@@ -458,10 +488,10 @@ class _BurgerUIState extends State<BurgerUI>
 //
             // total price
             Positioned(
-              bottom: 30,
-              right: 20,
+              bottom: screenHeight * 0.0468,
+              right: screenWidth * 0.0555,
               child: Container(
-                width: 120,
+                width: screenWidth * 0.3333,
                 height: 80,
                 alignment: Alignment.center,
                 child: Column(
@@ -500,7 +530,7 @@ class _BurgerUIState extends State<BurgerUI>
                       curve: _curve,
                       opacity: !hideText ? 1 : 0,
                       child: Container(
-                        width: 120,
+                        width: screenWidth * 0.3333,
                         height: .2,
                         color: Colors.black,
                       ),
@@ -543,40 +573,49 @@ class _BurgerUIState extends State<BurgerUI>
                           });
                         }
                       },
-                      child: Container(
-                        margin: EdgeInsets.only(left: 1),
-                        height: 20,
-                        width: 118,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: !greenColor ? 12 : 28),
-                        decoration: BoxDecoration(
-                            color: !greenColor ? kOrange : Color(0xff02BD01),
-                            borderRadius: BorderRadius.circular(3),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x55000029),
-                                offset: Offset(1, 1),
-                                blurRadius: 10.0,
+                      child: Center(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 1),
+                          height: 20,
+                          width: 118,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: !greenColor ? 12 : 28),
+                          decoration: BoxDecoration(
+                              color: !greenColor ? kOrange : Color(0xff02BD01),
+                              borderRadius: BorderRadius.circular(3),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0x55000029),
+                                  offset: Offset(1, 1),
+                                  blurRadius: 10.0,
+                                ),
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                !greenColor ? "ADD TO BAG  " : "ADDED",
+                                style: TextStyle(
+                                    fontFamily: "roboto",
+                                    fontSize: 10,
+                                    color: !greenColor
+                                        ? Colors.black
+                                        : Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              !greenColor ? "ADD TO BAG" : "ADDED",
-                              style: TextStyle(
-                                  fontFamily: "roboto",
-                                  fontSize: 10,
-                                  color:
-                                      !greenColor ? Colors.black : Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Icon(
-                              !greenColor ? Icons.work : Icons.done,
-                              color: !greenColor ? Colors.black : Colors.white,
-                              size: 10,
-                            )
-                          ],
+                              Visibility(
+                                visible: !greenColor,
+                                child: Padding(
+                                  padding: EdgeInsets.only(bottom: 2),
+                                  child: Icon(
+                                    Icons.work,
+                                    color: Colors.black,
+                                    size: 10,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )
