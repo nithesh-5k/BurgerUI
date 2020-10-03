@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:burger_ui/Burger.dart';
+import 'package:burger_ui/InfoPage.dart';
 import 'package:burger_ui/circular_text/circular_text.dart';
 import 'package:burger_ui/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,8 @@ class _BurgerUIState extends State<BurgerUI>
       hideText = false,
       forward = true,
       backward = false,
-      greenColor = false;
+      greenColor = false,
+      nextPage = false;
 
   Curve _curve = Curves.easeOut;
   Duration _duration = Duration(milliseconds: 600);
@@ -58,7 +60,7 @@ class _BurgerUIState extends State<BurgerUI>
     double burgerHeight = screenHeight * 0.3125, //200
         burgerWidth = burgerHeight * 1.35 > screenWidth * 0.75
             ? screenWidth * 0.75
-            : burgerHeight * 1.35, //270  //burgerWidth = screenWidth * 0.75,
+            : burgerHeight * 1.35, //270
         burgerFrameHeight = screenHeight * 0.75; //500
 
     return Container(
@@ -92,11 +94,27 @@ class _BurgerUIState extends State<BurgerUI>
             ),
 //
             //menu icon
-            Positioned(
-              right: screenWidth * 0.04,
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 150),
+              curve: _curve,
+              right: !nextPage ? screenWidth * 0.04 : screenWidth * 0.04 + 15,
               top: screenHeight * 0.017,
               child: GestureDetector(
-                onTap: () {},
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  setState(() {
+                    nextPage = true;
+                  });
+                  Future.delayed(Duration(milliseconds: 140), () {
+                    Navigator.push(context,
+                        CupertinoPageRoute(builder: (context) => InfoPage()));
+                    Future.delayed(Duration(milliseconds: 30), () {
+                      setState(() {
+                        nextPage = false;
+                      });
+                    });
+                  });
+                },
                 child: Container(
                     padding: EdgeInsets.all(5),
                     height: 40,
