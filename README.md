@@ -1,16 +1,5 @@
-# burger_ui
+# BurgerUI
 
-A new Flutter application.
+I have designed this UI to get experience with the technicalities of animation-based and responsive pages. I believe in my work and I personally feel that this work has achieved considerable responsiveness to fulfill the very goal.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The Burger UI is designed by [Rajveer Singh](https://www.linkedin.com/posts/rajveer-singh-43a9a0165_design-adobecc-microinteraction-activity-6707199264273039361-7ogO) which I have converted into a Flutter code base.
